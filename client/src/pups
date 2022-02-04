@@ -1,0 +1,23 @@
+<div className="App">
+	<header className="App-header">
+		<img src={logo} className="App-logo" alt="logo" />
+		<p>
+			Edit <code>src/App.js</code> and save to reload.
+		</p>
+		<a
+			className="App-link"
+			href="/hero"
+			rel="noopener noreferrer"
+		>
+			Learn React
+			{this.state.users.map(user => <div key={user.id}>{user.username}</div>)}
+		</a>
+	</header>
+</div>
+
+
+
+
+
+Ich bin ein Held namens {this.props.hero.name}. Hoa hoa hoa!!!
+<input type="text" value={this.state.heroname} onChange={this.newName} />
