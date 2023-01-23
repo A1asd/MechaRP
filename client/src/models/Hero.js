@@ -2,26 +2,35 @@ import StatBag from '../bags/StatBag';
 import SkillBag from '../bags/SkillBag';
 import ActiveTraitBag from '../bags/ActiveTraitBag';
 import ItemBag from '../bags/ItemBag';
-import Stat from './Stat';
+import JobRepository from '../Repository/JobRepository';
+import StatRepository from '../Repository/StatRepository';
+import TalentBag from '../bags/TalentBag';
+import TalentRepository from '../Repository/TalentRepository';
+
+let jobRepo = new JobRepository();
+let statRepo = new StatRepository();
+let talentRepo = new TalentRepository();
 
 export default class Hero {
     name; level; job; maxhp; stats; activeTraits; talents; skills; inventory;
 
     constructor() {
-        this.name = "peter";
+        this.name = "";
         this.level = 0;
         this.stats = new StatBag();
         this.activeTraits = new ActiveTraitBag();
         this.skills = new SkillBag();
         this.inventory = new ItemBag();
+		this.talents = new TalentBag();
+		this.job = jobRepo.findById(JobRepository.FIGHTER);
         this.stats.addStats(
-            new Stat(Stat.CHARISMA),
-            new Stat(Stat.STRENGTH),
-            new Stat(Stat.DEXTERITY),
-            new Stat(Stat.FIGHTING),
-            new Stat(Stat.SENSE),
-            new Stat(Stat.INTELLIGENCE)
+            statRepo.findById(StatRepository.PHYSIQUE),
+            statRepo.findById(StatRepository.REFLEXES),
+            statRepo.findById(StatRepository.WITS),
+            statRepo.findById(StatRepository.SENSE),
+            statRepo.findById(StatRepository.EMPATHY),
         );
+		this.talents.addTalents(talentRepo.findAll())
     }
 
     hasTrait(trait) {
@@ -33,6 +42,11 @@ export default class Hero {
         this.name = name;
         return this;
     }
+
+	setJob(job) {
+		this.job = job;
+		return this;
+	}
 
     getName() {
         return this.name;

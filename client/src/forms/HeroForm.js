@@ -1,54 +1,47 @@
 import { Component } from "react"
-import Job from "../models/Job";
-import Stat from "../models/Stat"
-import trans from "../Translation";
+import ActiveTraitBag from "../bags/ActiveTraitBag";
+import StatComponent from "../components/StatComponent";
+import TalentgroupComponent from "../components/TalentgroupComponent";
+import TraitListComponent from "../components/TraitListComponent";
+import JobRepository from "../Repository/JobRepository";
+import StatRepository from "../Repository/StatRepository";
+import TalentgroupRepository from "../Repository/TalentgroupRepository";
 
-const stats = [
-	Stat.STRENGTH, Stat.DEXTERITY, Stat.FIGHTING, Stat.INTELLIGENCE, Stat.CHARISMA, Stat.SENSE
-];
-
-const jobs = Job.LIST;
+const statRepository = new StatRepository();
+const jobRepository = new JobRepository();
+const talentgroupRepository = new TalentgroupRepository()
 
 export default class HeroForm extends Component {
 	state = {
-		strengthValue: this.props.hero.getStat(Stat.STRENGTH).getValue(),
-		job: Job.LIST.fighter,
+		job: this.props.hero.job,
+		hero: this.props.hero,
+		talentgroups: talentgroupRepository.findAll(),
+		talents: {},
+		statpoints: 50,
 	}
 
 	constructor(props) {
 		super(props);
 
-		this.incrementStat = this.incrementStat.bind(this);
-		this.decrementStat = this.decrementStat.bind(this);
-		this.changeStat = this.changeStat.bind(this);
-
+		this.changeName = this.changeName.bind(this);
 		this.changeJob = this.changeJob.bind(this);
-		this.toggleTrait = this.toggleTrait.bind(this);
 
-		this.statInput = this.statInput.bind(this);
+		this.maxTalentpoints = 300;
+		window.app = this;
 	}
 
-	statInput(stat, i) {
-		return (
-			<div key={i}>
-				<label htmlFor={stat}>{trans(stat)}</label>
-				<input id={stat} type="number" min="7" readOnly value={this.props.hero.getStat(stat).getValue()} />
-				<input type="button" onClick={(e) => this.incrementStat(stat, e)} value="+" />
-				<input type="button" onClick={this.decrementStat.bind(this, stat)} value="-" />
-			</div>
-		)
+	changeName(event) {
+		let hero = this.state.hero;
+		hero.name = event.target.value;
+		this.setState({hero: hero});
 	}
 
-	toggleTrait(trait) {
-		console.log(trait);
-		if (this.props.hero.hasTrait(trait)) {
-			this.props.hero.activeTraits.removeTrait(trait);
-		} else {
-			console.log(trait.requirements.trat);
-			if (this.props.hero.hasTrait(trait.requirements.trait)) {
-				this.props.hero.activeTraits.addTrait(trait);
-			}
-		}
+	changeJob(jobId) {
+		this.state.job.removeModifications(this.props.hero);
+		this.props.hero.activeTraits = new ActiveTraitBag();
+		this.props.hero.setJob(jobRepository.findById(jobId));
+		this.setState({job: this.props.hero.job});
+		jobRepository.findById(jobId).applyModifications(this.props.hero);
 	}
 
 	displayTraits(level) {
@@ -59,45 +52,51 @@ export default class HeroForm extends Component {
 				{filteredTraits.map((trait, i) => 
 				<div key={i}>
 					<input id={trait.name} type="checkbox"
-						defaultChecked={this.props.hero.hasTrait(filteredTraits[i])}
-						onChange={(e) => this.toggleTrait(filteredTraits[i], e)} />
+						checked={this.state.hero.hasTrait(trait)}
+						onChange={(e) => this.toggleTrait(trait, e)} />
 					<label htmlFor={trait.name}>{trait.name} - {trait.description}</label></div>
 				)}
 			</div>
 		)
 	}
 
-	changeJob(event) {
-		this.state.job.removeModifications(this.props.hero);
-		this.setState({job: Job.LIST[event.target.value]});
-		Job.LIST[event.target.value].applyModifications(this.props.hero);
-	}
-
-	incrementStat(stat) {
-		this.changeStat(stat, 1);
-	}
-
-	decrementStat(stat) {
-		this.changeStat(stat, -1);
-	}
-
-	changeStat(stat, value) {
-		this.props.hero.getStat(stat).changeBought(value);
-		this.setState({strengthValue: this.props.hero.getStat(stat).getValue()});
+	totalTalentpoints(talentgroupid = '') {
+		let total = this.maxTalentpoints;
+		Object.entries(this.state.talentgroups).forEach(element => {
+			if (element[1].id !== talentgroupid) {
+				total -= element[1].value;
+			}
+		});
+		return total;
 	}
 
 	render() {
+		//const stats = [Stat.STRENGTH, Stat.DEXTERITY, Stat.FIGHTING, Stat.INTELLIGENCE, Stat.CHARISMA, Stat.SENSE];
+		const stats = statRepository.findAll();
+		const jobs = jobRepository.findAll();
+		const talentgroups = talentgroupRepository.findAll();
+
 		return (
 			<div>
-				{stats.map((stat, i) => this.statInput(stat, i))}
-				<select value={this.state.job.id} onChange={this.changeJob}>
-					{Object.entries(jobs).map((job, i) => 
-						<option key={i} value={job[0]}>{job[1].name}</option>
+				<label htmlFor="nameInput">Name</label>
+				<input id="nameInput" value={this.state.hero.name} onChange={this.changeName} />
+				<label>{this.state.statpoints - this.totalStatpoints()}/{this.maxStatpoints}</label>
+				{Object.entries(stats).map((stat) => {
+					return <StatComponent stat={stat} hero={this.stat.hero}></StatComponent>
+				})}
+				<select value={this.state.job.id} onChange={(e) => { this.changeJob(e.target.value) }}>
+					{Object.entries(jobs).map((job) => 
+						<option key={job[0]} value={job[0]}>{job[1].name}</option>
 					)}
 				</select>
 				<div>{this.state.job.name}, {this.state.job.description}</div>
-				{this.displayTraits(1)}
-				{this.displayTraits(3)}
+				<label>talentpoints: {this.totalTalentpoints()}/{this.maxTalentpoints}</label>
+				{Object.entries(talentgroups).map((talentgroup) => {
+					return <TalentgroupComponent key={talentgroup[0]} hero={this.state.hero} talentgroup={talentgroup} totalTalentpoints={this.totalTalentpoints}></TalentgroupComponent>
+				})}
+				<TraitListComponent level={1} hero={this.state.hero}></TraitListComponent>
+				<TraitListComponent level={3} hero={this.state.hero}></TraitListComponent>
+				<button onClick={() => {console.log(this.props.hero)}}>print hero to console</button>
 			</div>
 		)
 	}

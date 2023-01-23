@@ -1,4 +1,4 @@
-class Range {
+export default class Range {
     static SELF = 'range.self';
     static CLOSE = 'range.close';
     static RANGED = 'range.ranged';
@@ -9,4 +9,5 @@ class Range {
     static CLOSERANGED = 'range.closeranged';
 
     static CLOUD = 'range.cloud';
+	static FAR = 'range.far';
 }

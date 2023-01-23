@@ -1,0 +1,36 @@
+{
+	"ranger": {
+		"name": "job.ranger.name",
+		"description": "job.ranger.description",
+		"traits": [
+			"bogenskills", "tierkram", "schuss"
+		],
+		"modifications": [
+			{"stat": "reflexes", "value": 2},
+			{"stat": "sense", "value": 1}
+		],
+		"skills": {
+			"headbut": {
+				"params": "target",
+				"body": "return target"
+			}
+		}
+	},
+	"fighter": {
+		"name": "job.fighter.name",
+		"description": "job.fighter.description",
+		"traits": [
+			"schwertskills", "schildkram", "schildstos", "bogenskills"
+		],
+		"modifications": [
+			{"stat": "physique", "value": 2},
+			{"stat": "wits", "value": 1}
+		],
+		"skills": {
+			"headbut": {
+				"params": "target",
+				"body": "return target"
+			}
+		}
+	}
+}

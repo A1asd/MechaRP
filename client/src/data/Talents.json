@@ -1,0 +1,146 @@
+{
+	"melee": {
+		"name": "talent.melee.name",
+		"stat": "physique",
+		"group": "trickster",
+		"description": "talent.melee.description"
+	},
+	"shield": {
+		"name": "talent.shield.name",
+		"stat": "physique",
+		"group": "daredevil",
+		"description": "talent.shield.description"
+	},
+	"sidearm": {
+		"name": "talent.sidearm.name",
+		"stat": "reflexes",
+		"group": "agent",
+		"description": "talent.sidearm.description"
+	},
+	"assaultrifle": {
+		"name": "talent.assaultrifle.name",
+		"stat": "reflexes",
+		"group": "leader",
+		"description": "talent.assaultrifle.description"
+	},
+	"sniperrifle": {
+		"name": "talent.sniperrifle.name",
+		"stat": "wits",
+		"group": "visionary",
+		"description": "talent.sniperrifle.description"
+	},
+	"heavygun": {
+		"name": "talent.heavygun.name",
+		"stat": "physique",
+		"group": "daredevil",
+		"description": "talent.heavygun.description"
+	},
+	"willpower": {
+		"name": "talent.willpower.name",
+		"stat": "wits",
+		"group": "theorist",
+		"description": "talent.willpower.description"
+	},
+	"constitution": {
+		"name": "talent.constitution.name",
+		"stat": "physique",
+		"group": "leader",
+		"description": "talent.willpower.description"
+	},
+	"observe": {
+		"name": "talent.observe.name",
+		"stat": "sense",
+		"group": "theorist",
+		"description": "talent.observe.description"
+	},
+	"dodge": {
+		"name": "talent.dodge.name",
+		"stat": "reflexes",
+		"group": "trickster",
+		"description": "talent.dodge.description"
+	},
+	"survival": {
+		"name": "talent.survival.name",
+		"stat": "sense",
+		"group": "leader",
+		"description": "talent.survival.description"
+	},
+	"mechanics": {
+		"name": "talent.mechanics.name",
+		"stat": "sense",
+		"group": "visionary",
+		"description": "talent.mechanics.description"
+	},
+	"electronics": {
+		"name": "talent.electronics.name",
+		"stat": "wits",
+		"group": "visionary",
+		"description": "talent.electronics.description"
+	},
+	"medicin": {
+		"name": "talent.medicin.name",
+		"stat": "wits",
+		"group": "theorist",
+		"description": "talent.medicin.description"
+	},
+	"power": {
+		"name": "talent.power.name",
+		"stat": "physique",
+		"group": "daredevil",
+		"description": "talent.power.description"
+	},
+	"tech": {
+		"name": "talent.tech.name",
+		"stat": "wits",
+		"group": "agent",
+		"description": "talent.tech.description"
+	},
+	"infiltrate": {
+		"name": "talent.infiltrate.name",
+		"stat": "reflexes",
+		"group": "trickster",
+		"description": "talent.infiltrate.description"
+	},
+	"mechpilot": {
+		"name": "talent.mechpilot.name",
+		"stat": "reflexes",
+		"group": "theorist",
+		"description": "talent.mechpilot.description"
+	},
+	"shippilot": {
+		"name": "talent.shippilot.name",
+		"stat": "sense",
+		"group": "visionary",
+		"description": "talent.shippilot.description"
+	},
+	"vehicle": {
+		"name": "talent.vehicle.name",
+		"stat": "sense",
+		"group": "daredevil",
+		"description": "talent.vehicle.description"
+	},
+	"manipulate": {
+		"name": "talent.manipulate.name",
+		"stat": "empathy",
+		"group": "agent",
+		"description": "talent.manipulate.description"
+	},
+	"command": {
+		"name": "talent.command.name",
+		"stat": "empathy",
+		"group": "leader",
+		"description": "talent.command.description"
+	},
+	"zerog": {
+		"name": "talent.zerog.name",
+		"stat": "physique",
+		"group": "agent",
+		"description": "talent.zerog.description"
+	},
+	"hack": {
+		"name": "talent.hack.name",
+		"stat": "wits",
+		"group": "trickster",
+		"description": "talent.hack.description"
+	}
+}

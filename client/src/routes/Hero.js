@@ -18,10 +18,12 @@ class HeroComponent extends Component {
 			.then(data => data.json())
 			.then(hero => this.props.setHero(hero));
 		*/
-		let urlHeroList = '/api/user/' + this.props.user.id + '/heroes';
-		fetch(urlHeroList)
-			.then(data => data.json())
-			.then(heroList => this.setState({heroList: heroList}))
+		if (this.props.user.id) {
+			let urlHeroList = '/api/user/' + this.props.user.id + '/heroes';
+			fetch(urlHeroList)
+				.then(data => data.json())
+				.then(heroList => this.setState({heroList: heroList}));
+		}
 	}
 	
 	listHeroes() {

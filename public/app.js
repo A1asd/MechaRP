@@ -33,9 +33,12 @@ const heroes = [
 
 app.use('/src', express.static(path.join(__dirname, '../src')));
 
-app.get('/login/user/:name/password/:password', (req, res) => {
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.post('/login', (req, res) => {
     let id;
-    let user = users.filter(user => user.username === req.params.name)[0]
+    let user = users.filter(user => user.username === req.body.user)[0]
     if (user) {
         id = user.id
     } else {
@@ -44,7 +47,7 @@ app.get('/login/user/:name/password/:password', (req, res) => {
             reason: 'user does not match password',
         });
     }
-    let pw = req.params.password;
+    let pw = req.body.password;
     let password = passports.filter(passport => passport.uid === id)[0]
     if (!password) {
         res.json({
@@ -57,11 +60,12 @@ app.get('/login/user/:name/password/:password', (req, res) => {
             authenticated: true,
             user: user,
         });
-    }
-    res.json({
-        authenticated: false,
-        reason: 'user does not match password',
-    });
+    } else {
+		res.json({
+	        authenticated: false,
+	        reason: 'user does not match password',
+	    });
+	}
 });
 
 app.get('/api/hero/:id', (req, res) => {

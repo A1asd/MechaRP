@@ -1,22 +1,21 @@
-class Talent {
-    name; stats; desc; base; bought;
+export default class Talent {
+    id; name; stat; group; desc; value;
 
-    constructor(name, stats, desc) {
+    constructor(id, name, stat, group, description, value = 0) {
+		this.id = id;
         this.name = name;
-        this.stats = stats;
-        this.desc = desc;
-        this.updateBase();
+        this.stat = stat;
+		this.group = group;
+        this.description = description;
+		this.value = value;
     }
 
-    updateBase() {
-        this.base = this.stats[0].getValue() + this.stats[1].getValue();
-    }
+	setValue(value) {
+		this.value = value;
+		return value;
+	}
 
-    setBought(value) {
-        this.bought = value;
-    }
-
-    getValue() {
-        return this.base + this.bought;
-    }
+	getValue() {
+		return this.value;
+	}
 }

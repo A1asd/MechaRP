@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class LoginForm extends Component {
+export default class LoginForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {username: '', password: ''};
@@ -13,13 +13,19 @@ class LoginForm extends Component {
 	login() {
 		let user = this.state.username;
 		let password = this.state.password;
-		fetch('/login/user/' + user + '/password/' + password)
-			.then(data => data.json())
-			.then(response => {
-				if (response.authenticated) {
-					this.props.setUser(response.user);
-				}
-			});
+		fetch('/login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({user: user, password: password}),
+		})
+		.then(data => data.json())
+		.then(response => {
+			if (response.authenticated) {
+				this.props.setUser(response.user);
+			}
+		});
 	}
 
 	handleChangeUsername(event) {
@@ -44,5 +50,3 @@ class LoginForm extends Component {
 		}
 	}
 }
-
-export default LoginForm;

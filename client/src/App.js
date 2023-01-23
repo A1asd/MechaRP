@@ -1,9 +1,11 @@
 import React, { Component, Suspense, lazy } from 'react';
 import { BrowserRouter as HashRouter, Route } from 'react-router-dom';
 import Hero from './models/Hero';
+import { setLocale } from './Translation';
 //import usePersistedState from './Hook';
 //import logo from './logo.svg';
 import './App.css';
+import JobRepository from './Repository/JobRepository';
 
 // Components
 const Navigation = lazy(() => import('./components/Navigation'));
@@ -16,11 +18,16 @@ const LoginForm = lazy(() => import('./forms/LoginForm'));
 const HeroComponent = lazy(() => import('./routes/Hero'));
 
 class App extends Component {
-	state = {user: {}, hero: new Hero()};
+	state = {
+		user: {},
+		hero: new Hero(),
+		locale: 'de',
+	};
 
 	constructor(props) {
 		super(props);
 
+		setLocale(this.state.locale)
 		this.setUser = this.setUser.bind(this);
 		this.unsetUser = this.unsetUser.bind(this);
 		this.setHero = this.setHero.bind(this);
@@ -38,6 +45,9 @@ class App extends Component {
 	}
 
 	setHero(hero) {
+		let jobRepo = new JobRepository()
+		hero = Hero.createFromJSON(hero);
+		hero.job = jobRepo.findById('ranger');
 		this.setState({
 			hero: Hero.createFromJSON(hero),
 		});

@@ -1,0 +1,26 @@
+{
+	"leader": {
+		"name": "talentgroup.leader.name",
+		"description": "talentgroup.leader.name"
+	},
+	"daredevil": {
+		"name": "talentgroup.daredevil.name",
+		"description": "talentgroup.daredevil.description"
+	},
+	"theorist": {
+		"name": "talentgroup.theorist.name",
+		"description": "talentgroup.theorist.description"
+	},
+	"visionary": {
+		"name": "talentgroup.visionary.name",
+		"description": "talentgroup.visionary.description"
+	},
+	"trickster": {
+		"name": "talentgroup.trickster.name",
+		"description": "talentgroup.trickster.description"
+	},
+	"agent": {
+		"name": "talentgroup.agent.name",
+		"description": "talentgroup.agent.description"
+	}
+}

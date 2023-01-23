@@ -1,0 +1,27 @@
+{
+	"physique": {
+		"name": "stat.physique.name",
+		"abbr": "stat.physique.abbr",
+		"desc": "stat.physique.desc"
+	},
+	"reflexes": {
+		"name": "stat.reflexes.name",
+		"abbr": "stat.reflexes.abbr",
+		"desc": "stat.reflexes.desc"
+	},
+	"wits": {
+		"name": "stat.wits.name",
+		"abbr": "stat.wits.abbr",
+		"desc": "stat.wits.desc"
+	},
+	"sense": {
+		"name": "stat.sense.name",
+		"abbr": "stat.sense.abbr",
+		"desc": "stat.sense.desc"
+	},
+	"empathy": {
+		"name": "stat.empathy.name",
+		"abbr": "stat.empathy.abbr",
+		"desc": "stat.empathy.desc"
+	}
+}

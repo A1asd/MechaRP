@@ -1,5 +1,5 @@
 export default class Stat {
-    name; base; bought; modifier;
+    id; name; abbr; description; base; bought; modifier;
 
     static FIGHTING = 'stat.fig';
     static STRENGTH = 'stat.str';
@@ -8,15 +8,18 @@ export default class Stat {
     static CHARISMA = 'stat.cha';
     static SENSE = 'stat.sns';
 
-    constructor(name = '', base = 8, bought = 0, modifier = 0) {
+    constructor(id, name, abbr, description, base = 0, bought = 0, modifier = 0) {
+		this.id = id;
         this.name = name;
+		this.abbr = abbr;
+        this.description = description;
         this.base = base;
         this.bought = bought;
         this.modifier = modifier;
     }
 
     changeBought(value) {
-        this.bought = this.bought + value;
+        this.bought = this.bought + parseInt(value);
     }
 
     getValue() {

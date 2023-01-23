@@ -15,7 +15,7 @@ export default class BaseBag {
     }
 
     get(objectId) {
-        let newArray = this.bag.filter( obj => obj.name === objectId);
+        let newArray = this.bag.filter( obj => obj.id === objectId);
         return newArray[0];
     }
 

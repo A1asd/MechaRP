@@ -1,0 +1,46 @@
+{
+	"bogenskills": {
+		"name": "trait.bowskill.name",
+		"description": "trait.bowskill.description",
+		"requirements": {
+			"level": 1
+		}
+	},
+	"schildkram": {
+		"name": "trait.shieldstuff.name",
+		"description": "trait.shieldstuff.description",
+		"requirements": {
+			"level": 1
+		}
+	},
+	"tierkram": {
+		"name": "Tierkram",
+		"description": "du kannst tiere zähmen und so",
+		"requirements": {
+			"level": 1
+		}
+	},
+	"schuss": {
+		"name": "Schuss",
+		"description": "präziser schuss",
+		"requirements": {
+			"level": 3,
+			"trait": "bogenskills"
+		}
+	},
+	"schwertskills": {
+		"name": "Schwertskills",
+		"description": "du hast krasse schwertkills",
+		"requirements": {
+			"level": 1
+		}
+	},
+	"schildstos": {
+		"name": "Schildstoß",
+		"description": "stoß mit dem schild... duh",
+		"requirements": {
+			"level": 3,
+			"trait": "schildkram"
+		}
+	}
+}
